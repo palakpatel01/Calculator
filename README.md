@@ -42,7 +42,7 @@ This project is a simple calculator application built using HTML, CSS, and JavaS
 
 1. Download the code or clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/palakpatel01/Calculator/tree/main>
    ```
 2. Open the `index.html` file in a web browser.
 
