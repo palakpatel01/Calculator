@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator App</title>
+    <style>
+        body {
+            font-family: Arial, Impact,'Arial Narrow Bold', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 1222px;
+            height: 898.5px;
+            top: 1306px ;
+            left: 2679px;
+            border: 1px;
+            margin: 0;
+            padding-top: 89px;
+            padding-right: 343px;
+            padding-bottom: 89px;
+            padding-left: 343px;
+            gap: 29px;
+            background-color: rgba(59, 70, 100, 1);
+            
+        }
+        .title {
+            color: white;
+            font-weight: bold;
+            margin-bottom: 1px;
+          
+        }
+
+        .calculator {
+            
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: right;
+            width: 536px;
+            height: 486px;
+        }
+        
+
+        .display {
+            background-color: #1c1e2b;
+            color: white;
+            font-size: 2em;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            
+        }
+        .buttons-container {
+            background-color: #1c1e2b;
+            padding: 20px;
+            border-radius: 10px;
+            
+            
+        }
+
+        .grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .grid-cols-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .button {
+            padding: 15px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+             
+            
+        }
+
+        .bg-gray-300 {
+            background: #eaeaea;
+        }
+
+        .bg-gray-300:active {
+            background: #d1d1d1;
+        }
+
+        .bg-red-500 {
+            background: #3B4664;
+            ;
+        }
+
+        .bg-red-500:active {
+            background: #e06666;
+        }
+
+        .bg-blue-500 {
+            background: #3B4664;
+            color: white;
+        }
+
+        .bg-blue-500:active {
+            background: #0056b3;
+        }
+
+        .bg-green-500 {
+            background: #fd2301;
+            color: white;
+        }
+
+        .bg-green-500:active {
+            background: #ff0000;
+        }
+
+        .p-4 {
+            padding: 15px;
+        }
+
+        .rounded-lg {
+            border-radius: 5px;
+        }
+
+        .text-xl {
+            font-size: 1.25em;
+        }
+
+        .text-white {
+            color: white;
+        }
+
+        .col-span-2 {
+            grid-column: span 2;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <div class="title">calc</div>
+        <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons-container">
+        <div class="grid grid-cols-4 gap-2">
+            <button class="bg-gray-300 p-4 rounded-lg text-xl" onclick="appendNumber('7')">7</button>
+            <button class="bg-gray-300 p-4 rounded-lg text-xl" onclick="appendNumber('8')">8</button>
+            <button class="bg-gray-300 p-4 rounded-lg text-xl" onclick="appendNumber('9')">9</button>
+            <button class="bg-red-500 text-white p-4 rounded-lg text-xl" onclick="deleteNumber()">DEL</button>
+            <button class="bg-gray-300 p-4 rounded-lg text-xl" onclick="appendNumber('4')">4</button>
+            <button class="bg-gray-300 p-4 rounded-lg text-xl" onclick="appendNumber('5')">5</button>
+            <button class="bg-gray-300 p-4 rounded-lg text-xl" onclick="appendNumber('6')">6</button>
+            <button class="bg-gray-300 p-4 rounded-lg text-xl" onclick="appendOperator('+')">+</button>
+            <button class="bg-gray-300 p-4 rounded-lg text-xl" onclick="appendNumber('1')">1</button>
+            <button class="bg-gray-300 p-4 rounded-lg text-xl" onclick="appendNumber('2')">2</button>
+            <button class="bg-gray-300 p-4 rounded-lg text-xl" onclick="appendNumber('3')">3</button>
+            <button class="bg-gray-300 p-4 rounded-lg text-xl" onclick="appendOperator('-')">-</button>
+            <button class="bg-gray-300 p-4 rounded-lg text-xl" onclick="appendOperator('.')">.</button>
+            <button class="bg-gray-300 p-4 rounded-lg text-xl" onclick="appendNumber('0')">0</button>
+            <button class="bg-gray-300 p-4 rounded-lg text-xl" onclick="appendOperator('/')">/</button>        
+            <button class="bg-gray-300 p-4 rounded-lg text-xl" onclick="appendOperator('*')">*</button>          
+            <button class="bg-blue-500 text-white p-4 rounded-lg text-xl col-span-2" onclick="resetDisplay()">RESET</button>
+            <button class="bg-green-500 text-white p-4 rounded-lg text-xl col-span-2" onclick="calculateResult()">=</button></div>
+        </div>
+        </div>
+        </div>
+        
+    
+
+    <script>
+        const display = document.getElementById('display');
+
+        function appendNumber(value) {
+            if (display.innerText === '0') {
+                display.innerText = value;
+            } else {
+                display.innerText += value;
+            }
+        }
+
+        function appendOperator(operator) {
+            display.innerText += operator;
+        }
+
+        function deleteNumber() {
+            display.innerText = display.innerText.slice(0, -1) || '0';
+        }
+
+        function resetDisplay() {
+            display.innerText = '0';
+        }
+
+        function calculateResult() {
+            try {
+                display.innerText = eval(display.innerText);
+            } catch (error) {
+                display.innerText = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
